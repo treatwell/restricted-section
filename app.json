@@ -1,0 +1,7 @@
+{
+  "name": "Protected Section",
+  "description": "Static site behind Google Authentication",
+  "repository": "https://github.com/treatwell/protected-section",
+  "logo": "https://github.com/treatwell/protected-section-logo.png",
+  "image": "heroku/nodejs"
+}

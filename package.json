@@ -1,0 +1,44 @@
+{
+  "name": "restricted-section",
+  "description": "Static site behind Google Authentication for limited domains",
+  "version": "1.0.0",
+  "repository": "https://github.com/treatwell/restricted-section",
+  "license": "MIT",
+  "engines": {
+    "node": "8.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "build": "gulp --production",
+    "dev": "gulp dev"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "require-environment-variables": "^1.1.2"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-csso": "^3.0.0",
+    "gulp-filter": "^5.0.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11"
+  }
+}

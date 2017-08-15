@@ -1,0 +1,4 @@
+{
+  "title": "Example Site",
+  "allowedDomains": [ "wahanda.com", "treatwell.com" ]
+}
