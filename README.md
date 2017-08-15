@@ -1,4 +1,8 @@
-<p align="center"><img height="144" width="368" src="https://user-images.githubusercontent.com/218656/29310158-9811c7a2-81a4-11e7-80cb-3f72752bdee6.png"></p>
+<p align="center">
+  <a href="https://github.com/treatwell/restricted-section">
+    <img height="144" width="368" src="https://user-images.githubusercontent.com/218656/29310158-9811c7a2-81a4-11e7-80cb-3f72752bdee6.png">
+  </a>
+</p>
 <p align="center">Static site behind Google OAuth2 for allowed email domains</p>
 
 ---
