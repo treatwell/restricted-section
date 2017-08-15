@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node app.js",
     "build": "gulp --production",
-    "dev": "gulp dev"
+    "dev": "gulp dev",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
