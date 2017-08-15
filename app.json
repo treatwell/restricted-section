@@ -1,7 +1,37 @@
 {
   "name": "Protected Section",
   "description": "Static site behind Google Authentication",
-  "repository": "https://github.com/treatwell/protected-section",
-  "logo": "https://github.com/treatwell/protected-section-logo.png",
-  "image": "heroku/nodejs"
+  "keywords": [ "static", "google", "oauth2" ],
+  "repository": "https://github.com/treatwell/restricted-section",
+  "logo": "https://user-images.githubusercontent.com/218656/29311588-6d8bed5e-81aa-11e7-9e15-d9890863f115.png",
+  "image": "heroku/nodejs",
+  "scripts": {
+    "postdeploy": "npm run build"
+  },
+  "env": {
+    "GOOGLE_CLIENT_ID": {
+      "description": "Google Application OAuth 2.0 Client ID, found in https://console.developers.google.com/apis/credentials",
+      "required": true,
+      "value": "00000000000-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.apps.googleusercontent.com"
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "description": "Client Secret for given Client ID",
+      "required": true,
+      "value": "XXXXXXXXXXXXXXXXXXXXXXXX"
+    },
+    "SESSION_SECRET": {
+      "description": "A random string for signing session cookies",
+      "required": true
+    },
+    "HOSTNAME": {
+      "description": "URL under which the site will be accessible (used to generate Google OAuth callbacks)",
+      "required": false,
+      "value": "restricted-section.example.com"
+    },
+    "HOSTPROTOCOL": {
+      "description": "`http` or `https`. If `https`, all HTTP traffic will be redirected to HTTPS",
+      "required": false,
+      "value": "http"
+    }
+  }
 }
