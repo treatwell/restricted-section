@@ -17,7 +17,7 @@ That's the Restricted Section. A very simple Node app that you can **host on Her
 
 ## Deploying and configuring
 
-#### Registering a Google Application
+### Registering a Google Application
 
  First you should [register a new Google Application](https://console.developers.google.com/projectcreate). 
  
@@ -34,36 +34,46 @@ That's the Restricted Section. A very simple Node app that you can **host on Her
  ```
  replacing `HOST` and protocol with public URL you want. It may take up to 10 minutes for Google to propagate settings.
  
- #### Deploy
+ ### Deploy
 
 The fastest way to get started is to **press that Deploy on Heroku button above**. You will need a Heroku account. 
 
 On the next page enter required environment variables:
 
-1. Client ID and Secret are from the Google OAuth2 you just created.
-2. Session signing key can be [any random string](https://www.random.org/strings/?num=1&len=16&digits=on&upperalpha=on&loweralpha=on&unique=off&format=html&rnd=new).
-3. `HOST` and `HOSTPROTOCOL` environment variables should be eventual public URL and whether you want it to be HTTPS-only (you should want that, but it requires paid Heroku plan).
-4. Click the big **Deploy** button and wait! Heroku should deploy successfully, and opening the app should greet you with "Authentication required" page.
+1. **Allowed domains** is a domain, or comma-separated list of domains to which the site will be restricted to.
+2. **Client ID and Secret** from the Google OAuth2 you just created.
+3. **Session signing key** can be [any random string](https://www.random.org/strings/?num=1&len=16&digits=on&upperalpha=on&loweralpha=on&unique=off&format=html&rnd=new).
+4. `HOST` and `HOSTPROTOCOL` environment variables should be eventual public URL and whether you want it to be HTTPS-only (you should want that, but it requires paid Heroku plan).
+5. Click the big **Deploy** button and wait! Heroku should deploy successfully, and opening the app should greet you with "Authentication required" page.
 
 ☝️ *Note: If you don't want to host your page under any memorable URL (e.g. something.example.com), you can of course use address provided by Heroku. Go in and add appropriate URLs to Google Developer Console and set HOST to `[APP_NAME].herokuapp.com`.*
 
 Next, go to Settings tab of your newly deployed app, scroll to **Domains and Certificates**, and press Add domain. Once you add it, you will be given a DNS Target to set. Go to wherever you manage your domain, create a new CNAME record with given Target and wait a couple of minutes for new records to take effect.
 
-#### Configure the authentication
+**That's it, the site is ready!** Once everything propagates you should be able to click blue authentication button, login with allowed Google account and see example content 🎉
 
-On your local machine, clone this repository and switch to it.
+## Working on the site
 
-Make sure [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) is installed and you are logged in with `heroku login` command. Then run `heroku git:remote -a [APP_NAME]`.
+### Setup working environment
 
-Update your config for local development:
+On your local machine, clone this repository and switch to it. Run `npm install` to install all dependencies.
 
-1. In `config.json` set your Site `title` and `allowedDomains`.
-2. To run authentication server locally (not required if you want to just work on static content), duplicate a file called `.env.example` to `.env` in root of repository and update it with correct values (can be the same as in Heroku). This file will not be committed to git.
+Make sure [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) is installed and you are logged in with `heroku login` command. Then run `heroku git:remote -a [APP_NAME]` to add Heroku as a git remote.
 
-Commit changes and do your first code push with `git push heroku master`. Once the new deploy goes live you should be able to do everything: open your new app at the correct URL, authenticate with Google, and see protected content if domain matches those included in config. 🎉
+After you make any changes, commit, and push with `git push heroku master`. Each Heroku deploy builds the site, so you don't need to commit `public` repository.
 
-## Running locally
+### Running without authentication
 
-#### Without authentication
+For most sites, all you want to work on is the static content behind the lock. Just run `npm run dev` and open [localhost:8080](http://localhost:8080). There is no authentication needed when running local server this way.
 
-#### With authentication
+Local server supports LiveReload. Every time you modify a file it will be compiled and page will automatically reload changed resources. 🍭 Sweet!
+
+**Pages** are in `source/content`. By default Gulp is configured to compile files with [Pug](https://pugjs.org/api/getting-started.html). **Stylesheets** (built with SCSS) live under `source/assets/stylesheets`, **Scripts** (built with Browserify) are under `source/assets/scripts`. Other assets folder should be self-explanatory. You should use `source/assets/icons` for favicon, apple-touch-icons and similar resources.
+
+Have fun! ✨
+
+### Running with authentication
+
+If you want to test authentication locally, duplicate a file called `.env.example` to `.env` in root of repository and update it with working values. They can be the same as in the Heroku instance, but you may want to create a separate OAuth2 Client and Secret just for sanity. This file will not be committed to git.
+
+Then, run `npm start` and open [localhost:3000](http://localhost:3000). If localhost was added to your OAuth2 list of Authorized redirect URIs, everything should work as expected.
