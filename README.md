@@ -19,7 +19,7 @@
  
  💡 *Tip: you should create the application under the organization you are trying to restrict access to. It's not required, just a good practice.*
  
- Click **Enable and manage APIs**, and make sure **Contacts API** and **Google+ API** are on.
+ Click **Enable and manage APIs**, and make sure **Contacts API** and **Google+ API** are enabled.
  
  Then, you should [create a new **OAuth2 Client ID**](https://console.developers.google.com/apis/credentials/oauthclient) in the Developer Console. [Google provides handy instructions](https://developers.google.com/identity/sign-in/web/devconsole-project). Pick a name for your site, it will be visible to users when logging in. Note Client ID and Secret, you will need these. 
  
@@ -42,11 +42,11 @@ On the next page enter required environment variables:
 4. `HOST` and `HOSTPROTOCOL` environment variables should be eventual public URL and whether you want it to be HTTPS-only (you should want that, but it requires paid Heroku plan).
 5. Click the big **Deploy** button and wait! Heroku should deploy successfully, and opening the app should greet you with "Authentication required" page.
 
-☝️ *Note: If you don't want to host your page under any memorable URL (e.g. something.example.com), you can use address provided by Heroku. Be sure to add herokuapp.com URI to Google Developer Console and set HOST to `[APP_NAME].herokuapp.com`.*
+☝️ *Note: If you don't want to host your page under any memorable URL (e.g. something.example.com), you can use the address provided by Heroku. Be sure to add herokuapp.com URI to Google Developer Console and set HOST to `[APP_NAME].herokuapp.com`.*
 
-Next, go to Settings tab of your newly deployed app, scroll to **Domains and Certificates**, and press **Add domain**. Once you add it, you will be given a DNS Target to set. Go to wherever you manage your domain, create a new CNAME record with given Target and wait a couple of minutes for new records to take effect.
+Next, go to the Settings tab of your newly deployed app, scroll to **Domains and Certificates**, and press **Add domain**. Once you add it, you will be given a DNS Target to set. Go to wherever you manage your domain, create a new CNAME record with given Target and wait a couple of minutes for new records to take effect.
 
-**That's it, the site is ready!** Once everything propagates you should be able to click blue authentication button, login with allowed Google account and see example content 🎉
+**That's it, the site is ready!** Once everything propagates you should be able to click the blue authentication button, login with an allowed Google account and see example content 🎉
 
 ## Working on the site
 
@@ -56,7 +56,7 @@ On your local machine, clone this repository and switch to it. Run `npm install`
 
 Make sure [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) is installed and you are logged in with `heroku login` command. Then run `heroku git:remote -a [APP_NAME]` to add Heroku as a git remote.
 
-After you make any changes, commit, and push with `git push heroku master`. Each Heroku deploy builds the site, so you don't need to commit `public` repository.
+After you make any changes, commit, and push with `git push heroku master`. Each Heroku deploy builds the site, so you don't need to commit the `public` repository.
 
 ### Running without authentication
 
@@ -70,6 +70,6 @@ Have fun! ✨
 
 ### Running with authentication
 
-If you want to test authentication locally, duplicate a file called `.env.example` to `.env` in root of repository and update it with working values. They can be the same as in the Heroku instance, but you may want to create a separate OAuth2 Client and Secret just for sanity. This file will not be committed to git.
+If you want to test authentication locally, duplicate a file called `.env.example` to `.env` in the root of the repository and update it with working values. They can be the same as in the Heroku instance, but you may want to create a separate OAuth2 Client and Secret just for sanity. This file will not be committed to git.
 
 Then, run `npm start` and open [localhost:3000](http://localhost:3000). If localhost was added to your OAuth2 list of Authorized redirect URIs, everything should work as expected.
