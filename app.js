@@ -6,7 +6,8 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy
 
 var config = require('./config.json')
 require('dotenv').config()
-require('require-environment-variables')(['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'SESSION_SECRET'])
+require('require-environment-variables')(['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'SESSION_SECRET', 'ALLOWED_DOMAINS'])
+var allowedDomains = process.env.ALLOWED_DOMAINS.split(",").map(function(domain) { return domain.trim() })
 
 passport.serializeUser(function(user, done) { done(null, user) })
 passport.deserializeUser(function(obj, done) { done(null, obj) })
@@ -16,13 +17,6 @@ var app = express()
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/public'))
-
-let unauthenticatedPaths = [
-  "/favicon.ico",
-  "/authenticate",
-  "/authenticate/google",
-  "/authenticate/google/callback"
-]
 
 app.set('port', (process.env.PORT || 3000))
 app.set('host', (process.env.HOSTNAME || "localhost"))
@@ -38,11 +32,11 @@ passport.use(new GoogleStrategy(
     }/authenticate/google/callback`
   },
   function(accessToken, refreshToken, profile, done) {
-    if (config.allowedDomains.indexOf(profile._json.domain) > -1) {
+    if (allowedDomains.indexOf(profile._json.domain) > -1) {
       console.log(`${ profile.emails[0].value } just authenticated`)
       return done(null, profile)
     } else {
-      return done("Unauthorised email domain")
+      return done(`Unauthorised email domain. Allowed domains are ${ allowedDomains.join(", ") }`)
     }
   }
 ))
@@ -74,7 +68,7 @@ app.all('*', function(req, res, next) {
 })
 
 app.all('*', function(req, res, next) {
-  if (unauthenticatedPaths.indexOf(req.path) > -1) {
+  if (config.unauthenticatedPaths.indexOf(req.path) > -1) {
     next()
   } else {
     ensureAuthenticated(req, res, next)

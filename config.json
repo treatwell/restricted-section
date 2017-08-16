@@ -1,4 +1,8 @@
 {
-  "title": "Example Site",
-  "allowedDomains": [ "wahanda.com", "treatwell.com" ]
+  "unauthenticatedPaths": [
+    "/favicon.ico",
+    "/authenticate",
+    "/authenticate/google",
+    "/authenticate/google/callback"
+  ]
 }

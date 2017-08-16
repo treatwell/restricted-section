@@ -6,6 +6,11 @@
   "logo": "https://user-images.githubusercontent.com/218656/29311588-6d8bed5e-81aa-11e7-9e15-d9890863f115.png",
   "image": "heroku/nodejs",
   "env": {
+    "ALLOWED_DOMAINS": {
+      "description": "Google email domains that are allowed access. Enter multiple domains as example.com,example.org",
+      "required": true,
+      "value": "example.com"
+    },
     "GOOGLE_CLIENT_ID": {
       "description": "Google Application OAuth 2.0 Client ID, found in https://console.developers.google.com/apis/credentials",
       "required": true,

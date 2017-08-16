@@ -113,7 +113,7 @@ gulp.task('media-watch', taskMedia)
 const taskPages = () => {
   gulp.src(paths.pages)
   .pipe(gulpfilter([ '**', '!**/_*' ]))
-  .pipe(pug({ locals: { site: config }}))
+  .pipe(pug({ locals: {  config: config }}))
   .pipe(config.production ? htmlmin({ comments: true, 
     conditionals: true, 
     cdata: true, 

@@ -91,9 +91,6 @@ block body
   .login-block
     h1 Authentication required
 
-    p
-      | The page you are trying to access is limited to users of 
-      strong= site.allowedDomains.join(" or ")
-      | . Please login with your Google account to authenticate.
+    p The page you are trying to access requires authentication with allowed email domain. Please login with your Google account to authenticate.
 
     a.authenticate-button( href="/authenticate/google" ) Login with Google Account
