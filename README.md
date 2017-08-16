@@ -3,11 +3,7 @@
 
 ---
 
-**Static sites are awesome**. Fast, secure, versioned in git. Great way to present information that doesn't need to be dynamic — documentation, assets, event agendas.
-
-But sometimes you want to have a static site inaccessible publicly. Something that can be **accessed only if the user is part of your G Suite domain**.
-
-That's the Restricted Section. A very simple Node app that you can **host on Heroku with a click**, and start publishing content that is only accessible with the right email domain.
+**Static sites are awesome**. Fast, secure, versioned in git. Great way to present information that doesn't need to be dynamic, such as documentation, assets, event agendas. **Restricted Section** is a simple Node app that you can host on Heroku with a click, and start publishing content that can be **accessed only if the user is part of your G Suite domain**.
 
 ![Screenshots](https://user-images.githubusercontent.com/218656/29317628-c177bdd4-81c4-11e7-9c6e-4129d01b58f8.png)
 
@@ -25,9 +21,9 @@ That's the Restricted Section. A very simple Node app that you can **host on Her
  
  Click **Enable and manage APIs**, and make sure **Contacts API** and **Google+ API** are on.
  
- Then, you should [create a new **OAuth2 Client ID**](https://console.developers.google.com/apis/credentials/oauthclient) in the Developer Console. [Google provides handy instructions](https://developers.google.com/identity/sign-in/web/devconsole-project). Note Client ID and Secret, you will need these. 
+ Then, you should [create a new **OAuth2 Client ID**](https://console.developers.google.com/apis/credentials/oauthclient) in the Developer Console. [Google provides handy instructions](https://developers.google.com/identity/sign-in/web/devconsole-project). Pick a name for your site, it will be visible to users when logging in. Note Client ID and Secret, you will need these. 
  
- For Authorized URLs you should enter 
+ Authorised JavaScript origins can be left blank. For Authorised redirect URIs you should enter 
  ```
  http://localhost:3000/authenticate/google/callback
  http[S]://[HOST]/authenticate/google/callback
@@ -46,9 +42,9 @@ On the next page enter required environment variables:
 4. `HOST` and `HOSTPROTOCOL` environment variables should be eventual public URL and whether you want it to be HTTPS-only (you should want that, but it requires paid Heroku plan).
 5. Click the big **Deploy** button and wait! Heroku should deploy successfully, and opening the app should greet you with "Authentication required" page.
 
-☝️ *Note: If you don't want to host your page under any memorable URL (e.g. something.example.com), you can of course use address provided by Heroku. Go in and add appropriate URLs to Google Developer Console and set HOST to `[APP_NAME].herokuapp.com`.*
+☝️ *Note: If you don't want to host your page under any memorable URL (e.g. something.example.com), you can use address provided by Heroku. Be sure to add herokuapp.com URI to Google Developer Console and set HOST to `[APP_NAME].herokuapp.com`.*
 
-Next, go to Settings tab of your newly deployed app, scroll to **Domains and Certificates**, and press Add domain. Once you add it, you will be given a DNS Target to set. Go to wherever you manage your domain, create a new CNAME record with given Target and wait a couple of minutes for new records to take effect.
+Next, go to Settings tab of your newly deployed app, scroll to **Domains and Certificates**, and press **Add domain**. Once you add it, you will be given a DNS Target to set. Go to wherever you manage your domain, create a new CNAME record with given Target and wait a couple of minutes for new records to take effect.
 
 **That's it, the site is ready!** Once everything propagates you should be able to click blue authentication button, login with allowed Google account and see example content 🎉
 
@@ -68,7 +64,7 @@ For most sites, all you want to work on is the static content behind the lock. J
 
 Local server supports LiveReload. Every time you modify a file it will be compiled and page will automatically reload changed resources. 🍭 Sweet!
 
-**Pages** are in `source/content`. By default Gulp is configured to compile files with [Pug](https://pugjs.org/api/getting-started.html). **Stylesheets** (built with SCSS) live under `source/assets/stylesheets`, **Scripts** (built with Browserify) are under `source/assets/scripts`. Other assets folder should be self-explanatory. You should use `source/assets/icons` for favicon, apple-touch-icons and similar resources.
+**Pages** are in `source/content`. By default Gulp is configured to compile files with [Pug](https://pugjs.org/api/getting-started.html). **Stylesheets** (built with SCSS) live under `source/assets/stylesheets`, **Scripts** (built with Browserify) are under `source/assets/scripts`. You should use `source/assets/icons` for favicon, apple-touch-icons and similar resources. Other assets folder should be self-explanatory.
 
 Have fun! ✨
 
