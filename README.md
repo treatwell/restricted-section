@@ -56,7 +56,7 @@ On your local machine, clone this repository and switch to it. Run `npm install`
 
 Make sure [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) is installed and you are logged in with `heroku login` command. Then run `heroku git:remote -a [APP_NAME]` to add Heroku as a git remote.
 
-After you make any changes, commit, and push with `git push heroku master`. Each Heroku deploy builds the site, so you don't need to commit the `public` repository.
+After you make any changes, commit, and push with `git push heroku master`. Each Heroku deploy builds the site, so you don't need to commit the `public` directory.
 
 ### Running without authentication
 
