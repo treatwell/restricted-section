@@ -36,7 +36,7 @@ passport.use(new GoogleStrategy(
       console.log(`${ profile.emails[0].value } just authenticated`)
       return done(null, profile)
     } else {
-      return done(`Unauthorised email domain. Allowed domains are ${ allowedDomains.join(", ") }`)
+      return done(`Unauthorised email domain. Allowed domains are <strong>${ allowedDomains.join(", ") }</strong>`)
     }
   }
 ))
@@ -93,10 +93,24 @@ app.get('/authenticate/logout', function(req, res) {
   res.redirect('/') 
 })
 app.get('/authenticate/google', passport.authenticate('google', { scope: ['profile email'] }))
-app.get('/authenticate/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/authenticate' }),
-  function(req, res) { res.redirect('/') }
-)
+
+app.get('/authenticate/google/callback', function(req, res, next) {
+  passport.authenticate('google', function(err, user, info) {
+    if (err) { 
+      res.status(401).send(err);
+      return next(err);
+    }
+    if (!user) { 
+      return res.redirect('/authenticate'); 
+    }
+    req.logIn(user, function(err) {
+      if (err) { 
+        return next(err); 
+      }
+      res.redirect('/');
+    });
+  })(req, res, next);
+});
 
 app.listen(app.get('port'), function() { 
   console.log(`Listening on http://${ app.get('host') }:${ app.get('port') }`) 
