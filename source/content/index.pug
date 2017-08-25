@@ -1,5 +1,17 @@
 extends ../assets/templates/base
 
 block content
-  h1 Successfully Authenticated
-  p This is just an example content. Modify <code>source/content/index.pug</code> to change it. For more details, check out project README.
+  h1 Example content
+  p If you see this after deploying on Heroku or running <code>npm start</code>, congratulations, your authentication flow is working correctly! 
+  p If you see this by running <code>npm run dev</code>, you should not have needed to authenticate.
+
+  hr
+
+  p This is just an example content. Here are the files you should look into and modify:
+  
+  ul
+    li <code>source/content/index.pug</code> to change the text of this file. You can also create more .pug files (in <code>source/content/</code> and new subdirectories) for multiple pages.
+    li <code>source/assets/stylesheets/site.scss</code> to change styling. You can organise files with SCSS imports.
+    li <code>source/assets/scripts/site.js</code> to add JavaScript. There's an example how you can import modules that are later compiled to a single file.
+    
+  p For more details, check out project README.
