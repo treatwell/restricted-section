@@ -16,11 +16,17 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
-    "del": "^3.0.0",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "require-environment-variables": "^1.1.2"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-browserify": "^0.5.1",
@@ -34,10 +40,6 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
-    "morgan": "^1.9.1",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
-    "require-environment-variables": "^1.1.2"
+    "gulp-watch": "^4.3.11"
   }
 }
